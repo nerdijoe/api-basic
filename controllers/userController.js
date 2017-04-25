@@ -1,4 +1,3 @@
-var User = require("../models/user");
 
 const db = require("../models")
 
@@ -6,7 +5,7 @@ exports.index = (req, res, next) => {
   db.User.findAll()
   .then ( users => {
     // res.render('index', {title: "Get Users",users: JSON.stringify(users)});
-    res.send(JSON.stringify(users));
+    res.send(users);
   })
 
 }
@@ -14,7 +13,7 @@ exports.index = (req, res, next) => {
 exports.user_detail = (req, res, next) => {
   db.User.findById(req.params.id)
   .then ( user => {
-    res.send(JSON.stringify(user));
+    res.send(user);
   })
 }
 
@@ -31,7 +30,8 @@ exports.user_create_post = (req, res, next) => {
 
   db.User.create({name: name, username: username, phone: phone, email: email, password: password})
   .then ( user => {
-    res.send(`Created user ${user.username}`);
+    // res.send(`Created user ${user.username}`);
+    res.send(user);
   })
 }
 
